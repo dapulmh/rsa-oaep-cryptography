@@ -2,6 +2,7 @@
 
 This repository belong to dapul &amp; genjor for cyptography course assignment
 
+<pre>
 rsa_oaep_project/
 │
 ├── cryptolib/
@@ -13,3 +14,4 @@ rsa_oaep_project/
 ├── io_utils.py               # file chunking, metadata, serialize/deserialize ints
 ├── gui.py                    # Tkinter GUI glue
 └── main.py
+</pre>
