@@ -45,7 +45,7 @@ def oaep_encode(message: bytes, k: int, k0: int = None, k1: int = None) -> bytes
     if k1 is None:
         k1 = h_len
 
-    max_msg_len = k - k0 - k1
+    max_msg_len = k - k0 - k1 - 1
     if len(message) > max_msg_len:
         raise ValueError(f"Message too long: max {max_msg_len} bytes for this block")
 
@@ -56,14 +56,14 @@ def oaep_encode(message: bytes, k: int, k0: int = None, k1: int = None) -> bytes
     r = os.urandom(k0)
 
     # Compute maskedDB and maskedSeed
-    db_mask = mgf1(r, k - k0)
+    db_mask = mgf1(r, k - k0-1)
     masked_db = bytes(db[i] ^ db_mask[i] for i in range(len(db_mask)))
 
     seed_mask = mgf1(masked_db, k0)
     masked_seed = bytes(r[i] ^ seed_mask[i] for i in range(k0))
 
     # Output: maskedSeed || maskedDB
-    return masked_seed + masked_db
+    return b'\x00' + masked_seed + masked_db
 
 
 def oaep_decode(encoded: bytes, k: int, k0: int = None, k1: int = None) -> bytes:
@@ -85,20 +85,19 @@ def oaep_decode(encoded: bytes, k: int, k0: int = None, k1: int = None) -> bytes
     if len(encoded) != k:
         raise ValueError(f"Encoded block must be exactly {k} bytes")
 
-    # Split masked components
-    masked_seed = encoded[:k0]
-    masked_db = encoded[k0:]
+    # Check and strip leading 0x00 byte
+    if encoded[0] != 0x00:
+        raise ValueError("Decoding error: expected leading 0x00 byte")
+    masked_seed = encoded[1:k0+1]
+    masked_db = encoded[k0+1:]
 
-    # Unmask seed
     seed_mask = mgf1(masked_db, k0)
     r = bytes(masked_seed[i] ^ seed_mask[i] for i in range(k0))
 
-    # Unmask DB
-    db_mask = mgf1(r, k - k0)
+    db_mask = mgf1(r, k - k0 - 1)
     db = bytes(masked_db[i] ^ db_mask[i] for i in range(len(db_mask)))
 
-    # Split message and zero pad
-    m, zero_pad = db[: len(db) - k1], db[len(db) - k1:]
+    m, zero_pad = db[:len(db) - k1], db[len(db) - k1:]
     if any(zero_pad):
         raise ValueError("OAEP decode error: zero-padding check failed")
 
@@ -110,7 +109,7 @@ if __name__ == '__main__':
     k0 = h_len
     k1 = h_len
     k = 128  # 1024-bit modulus length in bytes
-    max_msg_len = k - k0 - k1
+    max_msg_len = k - k0 - k1 - 1
     msg = b'A' * max_msg_len
     print(f"Self-test: using msg length = {len(msg)} (block size = {max_msg_len}) bytes")
     enc = oaep_encode(msg, k, k0=k0, k1=k1)
