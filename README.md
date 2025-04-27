@@ -8,10 +8,10 @@ rsa_oaep_project/
 ├── cryptolib/
 │   ├── __init__.py
 │   ├── number_theory.py      # primality tests, egcd, modinv
-│   ├── rsa_key_generator.py                # keygenerator
-│   └── oaep.py               # MGF1, oaep_encode/decode
+│   ├── rsa_key_generator.py  # RSA key pair generation
+│   ├── oaep.py               # MGF1, oaep_encode/decode
+│   ├── file_util.py          # Key file reading/writing utilities
+│   └── rsa.py                # file chunking, encryption/decryption operations
 │
-├──               # file chunking, metadata, serialize/deserialize ints
-├── gui.py                    # Tkinter GUI glue
-└── main.py
+└── gui.py                    # Tkinter GUI interface
 </pre>
