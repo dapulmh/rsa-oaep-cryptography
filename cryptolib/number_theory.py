@@ -87,7 +87,6 @@ def modinv(a: int, m: int) -> int:
         raise ValueError(f"Modular inverse does not exist for a={a}, m={m}")
     return x % m
 
-
 # Quick CLI tests
 if __name__ == '__main__':
     # sanity-check prime gen
