@@ -2,7 +2,6 @@ import os
 import tkinter as tk
 from tkinter import filedialog, messagebox
 
-# Import your cryptography modules and functions
 from cryptolib.number_theory import *
 from cryptolib.rsa_key_generator import *
 from cryptolib.file_util import *
