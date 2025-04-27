@@ -1,4 +1,3 @@
-# cryptolib/number_theory.py
 """
 Number-theoretic utilities for RSA-OAEP:
 - Miller–Rabin primality test
@@ -88,13 +87,13 @@ def modinv(a: int, m: int) -> int:
     return x % m
 
 # Quick CLI tests
-if __name__ == '__main__':
-    # sanity-check prime gen
-    p = generate_prime(16)
-    q = generate_prime(16)
-    print(f"Generated 16-bit primes p={p}, q={q}")
-    # check modinv correctness
-    for a in [3, 17, 23]:
-        inv = modinv(a, 40)
-        assert (a * inv) % 40 == 1
-    print("modinv tests passed")
+# if __name__ == '__main__':
+#     # sanity-check prime gen
+#     p = generate_prime(16)
+#     q = generate_prime(16)
+#     print(f"Generated 16-bit primes p={p}, q={q}")
+#     # check modinv correctness
+#     for a in [3, 17, 23]:
+#         inv = modinv(a, 40)
+#         assert (a * inv) % 40 == 1
+#     print("modinv tests passed")

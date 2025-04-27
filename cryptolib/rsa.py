@@ -1,6 +1,6 @@
 import os
-from oaep import oaep_encode, oaep_decode
-from file_util import read_key_from_file
+from .oaep import oaep_encode, oaep_decode
+from .file_util import read_key_from_file
 
 
 

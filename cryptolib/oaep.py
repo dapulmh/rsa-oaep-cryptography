@@ -1,4 +1,3 @@
-# cryptolib/oaep.py
 """
 OAEP padding/unpadding utilities and MGF1 for RSA-OAEP.
 - MGF1 based on SHA-256
@@ -8,7 +7,7 @@ import os
 import math
 import hashlib
 
-from number_theory import modinv  # to avoid circular imports, if needed elsewhere
+from .number_theory import modinv  # to avoid circular imports, if needed elsewhere
 
 
 def mgf1(seed: bytes, mask_len: int) -> bytes:
