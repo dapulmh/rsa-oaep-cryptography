@@ -2,7 +2,10 @@ import random
 import math
 from number_theory import generate_prime, modinv
 
-
+"""
+Referensi :
+    slide scele
+"""
 def rsa_key_generation(bits: int = 2048) -> tuple:
     # Generate two large primes
     p = generate_prime(bits // 2)

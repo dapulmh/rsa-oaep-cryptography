@@ -8,6 +8,12 @@ Number-theoretic utilities for RSA-OAEP:
 import random
 import math
 
+"""
+Referensi :
+   https://www.geeksforgeeks.org/rsa-algorithm-cryptography/
+   https://gist.github.com/Ayrx/5884790
+   https://github.com/piratax007/prime_numbers_generator
+"""
 def is_prime(n: int, k: int = 40) -> bool:
     """
     Miller–Rabin probabilistic primality test.

@@ -3,6 +3,11 @@ from oaep import oaep_encode, oaep_decode
 from file_util import read_key_from_file
 
 
+"""
+Referensi :
+    slide scele
+    https://github.com/pwnalone/rsa-oaep-crypto
+"""
 
 def encrypt_file(input_file, output_file, public_key_file):
     """

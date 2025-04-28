@@ -3,6 +3,11 @@ OAEP padding/unpadding utilities and MGF1 for RSA-OAEP.
 - MGF1 based on SHA-256
 - oaep_encode / oaep_decode for single-block operations
 """
+"""
+Referensi:
+    slide scele
+    https://en.wikipedia.org/wiki/Optimal_asymmetric_encryption_padding
+"""
 import os
 import math
 import hashlib
