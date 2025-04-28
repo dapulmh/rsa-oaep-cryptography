@@ -16,6 +16,13 @@ def generate_keys_if_not_exists():
     else:
         print("Keys already exist. Using the existing key pair.")
 
+def regenerate_keys():
+    print("Generating 2048-bit RSA key pair...")
+    public_key, private_key = rsa_key_generation(2048)
+    save_key_to_file(public_key, 'public_key.txt')
+    save_key_to_file(private_key, 'private_key.txt')
+    print("Keys saved to public_key.txt and private_key.txt")
+
 def encrypt_file_gui():
     input_file = filedialog.askopenfilename(title="Select a file to encrypt")
     if not input_file:
@@ -67,7 +74,11 @@ def main():
     label = tk.Label(root, text="Select an operation:", font=("Helvetica", 14))
     label.pack(pady=15)
 
-    # Create Encrypt and Decrypt buttons.
+    # Create  Regenerate Key, Encrypt, and Decrypt buttons.
+
+    encrypt_button = tk.Button(root, text="Regenerate Key", command=regenerate_keys, width=20)
+    encrypt_button.pack(pady=5)
+    
     encrypt_button = tk.Button(root, text="Encrypt File", command=encrypt_file_gui, width=20)
     encrypt_button.pack(pady=5)
 
