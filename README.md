@@ -1,6 +1,6 @@
 # rsa-oaep-cryptography
 
-This repository belong to dapul &amp; genjor for cyptography course assignment
+This repository belong to dapul &amp; rafi for cyptography course assignment
 
 <pre>
 rsa_oaep_project/
@@ -15,3 +15,17 @@ rsa_oaep_project/
 │
 └── gui.py                    # Tkinter GUI interface
 </pre>
+
+**How to run our program**
+
+1. Run cryptolib/gui.py
+
+**Output format of key**
+
+Public key
+
+*e_hex,n_hex*
+
+Private key
+
+*d_hex,n_hex*
