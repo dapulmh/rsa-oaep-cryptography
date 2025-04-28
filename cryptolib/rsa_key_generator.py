@@ -1,6 +1,6 @@
 import random
 import math
-from .number_theory import generate_prime, modinv
+from number_theory import generate_prime, modinv
 
 
 def rsa_key_generation(bits: int = 2048) -> tuple:

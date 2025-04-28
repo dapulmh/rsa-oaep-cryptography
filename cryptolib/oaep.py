@@ -7,8 +7,6 @@ import os
 import math
 import hashlib
 
-from .number_theory import modinv  # to avoid circular imports, if needed elsewhere
-
 
 def mgf1(seed: bytes, mask_len: int) -> bytes:
     """

@@ -1,11 +1,10 @@
 import os
 import tkinter as tk
 from tkinter import filedialog, messagebox
-
-from cryptolib.number_theory import *
-from cryptolib.rsa_key_generator import *
-from cryptolib.file_util import *
-from cryptolib.rsa import encrypt_file, decrypt_file
+from number_theory import *
+from rsa_key_generator import *
+from file_util import *
+from rsa import encrypt_file, decrypt_file  
 
 def generate_keys_if_not_exists():
     if not (os.path.exists('public_key.txt') and os.path.exists('private_key.txt')):
@@ -18,7 +17,6 @@ def generate_keys_if_not_exists():
         print("Keys already exist. Using the existing key pair.")
 
 def encrypt_file_gui():
-
     input_file = filedialog.askopenfilename(title="Select a file to encrypt")
     if not input_file:
         return  # User cancelled
@@ -55,8 +53,9 @@ def decrypt_file_gui():
     except Exception as e:
         messagebox.showerror("Decryption Error", str(e))
 
-def main_gui():
-    # Generate keys automatically if they do not already exist.
+
+
+def main():
     generate_keys_if_not_exists()
 
     # Create the main window.
@@ -79,4 +78,4 @@ def main_gui():
     root.mainloop()
 
 if __name__ == '__main__':
-    main_gui()
+    main()

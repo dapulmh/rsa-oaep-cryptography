@@ -1,6 +1,6 @@
 import os
-from .oaep import oaep_encode, oaep_decode
-from .file_util import read_key_from_file
+from oaep import oaep_encode, oaep_decode
+from file_util import read_key_from_file
 
 
 
@@ -39,7 +39,7 @@ def encrypt_file(input_file, output_file, public_key_file):
             # Convert bytes to integer
             m = int.from_bytes(padded_chunk, byteorder='big')
             
-            # RSA encryption: c = m^e mod n
+            # # RSA encryption: c = m^e mod n
             c = pow(m, e, n)
             
             # Write the encrypted chunk
@@ -77,10 +77,12 @@ def decrypt_file(input_file: str, output_file: str, private_key_file: str):
                 break
             
             chunk_counter += 1
+            print(f"Processing chunk {chunk_counter}, size: {len(ciphertext_bytes)} bytes")
             
             # Convert bytes to integer
             c = int.from_bytes(ciphertext_bytes, byteorder='big')
 
+            # # RSA decryption: m = c^d mod n
             m = pow(c, d, n)
             
             # Convert to bytes and unpad using OAEP
