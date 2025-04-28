@@ -4,6 +4,7 @@ from rsa import encrypt_file, decrypt_file
 import os
 
 def ensure_dir(path):
+    # ensure directories appear
     if not os.path.exists(path):
         os.makedirs(path)
 

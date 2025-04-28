@@ -1,4 +1,3 @@
-# cryptolib/file_util.py
 def read_key_from_file(filename: str) -> tuple:
     """
     Read a key from a file.
